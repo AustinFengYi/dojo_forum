@@ -11,12 +11,9 @@
     
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-left">
-        <% if current_user %>
-         <% if current_user&.admin? %>
-           <li class="active"><%= link_to('後台', admin_root_path) %></li>
-          <li ><%= link_to('前台', root_path) %></li>
-        <% end %>
-        <% end %>
+          <li style="font-size: 15px;"><%= link_to "Feeds",root_path %></li>
+          <li style="font-size: 15px;"><%= link_to "All Posts",root_path %></li>
+          <li style="font-size: 15px;"><%= link_to "New Post",root_path %></li>
       </ul>
 
 
