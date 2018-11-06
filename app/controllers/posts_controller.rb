@@ -37,6 +37,33 @@ class PostsController < ApplicationController
     @replies = @post.replies.order(created_at: :asc)
   end 
 
+  def edit
+    @post = Post.find(params[:id])   
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if params[:commit] == "Save Draft"
+      @post.status = false
+    else
+      @post.status = true
+    end
+    
+    if @post.update(post_params)
+      if @post.status == true    
+        flash[:notice] = "Post was successfully updated"
+      else
+        flash[:notice] = "Post Draft was successfully updated"
+      end
+      redirect_to post_path(@post)    
+    else
+      flash[:notice] = "Failed to update"
+      render :edit 
+    end   
+  end
+
+  
+
   private
 
 
