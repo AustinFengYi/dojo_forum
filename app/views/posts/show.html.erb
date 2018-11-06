@@ -11,18 +11,32 @@
           <tbody>
             <!--post content-->
             <tr>
-              <td>
+              <td class="col-md-3">
                 <p class="text-center"><%= @post.user.name %></p>
               </td>
 
-              <td><%= @post.content %></td>
+              <td class="col-md-9">
+                <p><%= @post.content %></p>
+                <% if current_user == @post.user || current_user.admin? %>
+                  <%= link_to post_path(@post), method: :delete, data: { confirm: "確定要刪除本則貼文嗎?"} do %>
+                    <span class="glyphicon glyphicon-remove post-icon"></span>
+                  <% end %>
+                <% end %>
+
+                <% if current_user == @post.user %>
+                  <%= link_to edit_post_path(@post) do %>
+                    <span class="glyphicon glyphicon-pencil post-icon"></span>
+                  <% end %>
+                <% end %>
+
+              </td>
             </tr>       
 
             <!--reply content-->  
             <% @replies.each do |reply| %>
               <tr class="reply-content">
-                <td><p class="text-center"><%= reply.user.name %></p></td>
-                <td><%= reply.content  %></td>
+                <td class=_col-md-3><p class="text-center"><%= reply.user.name %></p></td>
+                <td class=_col-md-9><%= reply.content  %></td>
               </tr>
             <% end %>
              
