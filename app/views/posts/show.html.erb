@@ -1,1 +1,40 @@
-內容
+<div class="container">  
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="post-title">
+        <h2><%= @post.title %></h2>       
+      </div>
+      
+      <div class="post-content">
+        <table class="table table-bordered">
+          <tbody>
+            <!--post content-->
+            <tr>
+              <td>
+                <div class="text-center">
+                  <p><%= @post.user.name %></p>
+                </div>
+              </td>
+
+              <td>
+                <div><%= @post.content %></div>                 
+              </td>
+            </tr>       
+
+            <!--reply content-->  
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>   
+          </tbody>
+        </table>
+      </div>
+
+      <div class="post-reply">
+        
+      </div>
+            
+    </div>
+  </div>
+</div>
