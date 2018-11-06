@@ -18,21 +18,25 @@
 
       <ul class="nav navbar-nav navbar-right"> 
         <% if current_user %>         
-          <li><%= link_to tweets_user_path(current_user) do %>
-            <div class="user-avatar"><%= image_tag current_user.avatar if current_user.avatar? %></div>
-          <% end %> 
-
+          
+          <li style="font-size: 15px;">
+            <p class="navbar-text"><%= current_user.email %></p>
           </li>
 
-          <li><%= link_to destroy_user_session_path, method: :delete do%>
-           <span class="glyphicon glyphicon-log-out"></span> 登出
+          <li style="font-size: 15px;"><%= link_to "(Admin)",root_path %>
+          </li> 
+
+          <li style="font-size: 15px;"><%= link_to root_path do %>
+            <span class="glyphicon glyphicon-pencil"></span> Profile
+          <% end %>
+          </li> 
+
+          <li style="font-size: 15px;"><%= link_to destroy_user_session_path, method: :delete do%>
+           <span class="glyphicon glyphicon-log-out"></span> Log out
           <% end %> 
           </li> 
 
-          <li><%= link_to edit_user_registration_path do %>
-            <span class="glyphicon glyphicon-pencil"></span> 修改密碼
-            <% end %>
-          </li>
+
          <% else %>
           <li><%= link_to new_user_registration_path do %>
             <span class="glyphicon glyphicon-registration-mark"></span> 註冊
