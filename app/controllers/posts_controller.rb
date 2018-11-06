@@ -31,6 +31,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+  @user = current_user
+  @post = @user.posts.find(params[:id])   
+  end 
+
   private
 
 
