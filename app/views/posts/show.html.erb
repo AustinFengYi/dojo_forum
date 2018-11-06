@@ -12,21 +12,20 @@
             <!--post content-->
             <tr>
               <td>
-                <div class="text-center">
-                  <p><%= @post.user.name %></p>
-                </div>
+                <p class="text-center"><%= @post.user.name %></p>
               </td>
 
-              <td>
-                <div><%= @post.content %></div>                 
-              </td>
+              <td><%= @post.content %></td>
             </tr>       
 
             <!--reply content-->  
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>   
+            <% @replies.each do |reply| %>
+              <tr class="reply-content">
+                <td><p class="text-center"><%= reply.user.name %></p></td>
+                <td><%= reply.content  %></td>
+              </tr>
+            <% end %>
+             
           </tbody>
         </table>
       </div>

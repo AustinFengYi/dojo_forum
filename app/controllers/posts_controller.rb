@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.create(post_params)
     @post.user = current_user
 
     if params[:commit] == "Save Draft"
@@ -32,9 +32,9 @@ class PostsController < ApplicationController
   end
 
   def show
-  @user = current_user
-  @post = @user.posts.find(params[:id])   
-  @reply = @post.replies.new
+    @post = Post.find(params[:id])   
+    @reply = @post.replies.new
+    @replies = @post.replies.order(created_at: :asc)
   end 
 
   private
