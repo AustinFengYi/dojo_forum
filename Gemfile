@@ -10,6 +10,7 @@ gem 'carrierwave'
 # gem 'mini_magick'
 
 gem 'ffaker'
+gem 'kaminari'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
