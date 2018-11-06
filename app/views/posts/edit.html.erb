@@ -32,8 +32,8 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :image, "Image" %>
-          <%= image_tag @post.image, width: '300px' if @post.image? %>
+          <%= f.label :image, "Image" %><br>
+          <%= image_tag @post.image.url, width: '300px' if @post.image? %>
           <%= f.file_field :image %>
         </div>
 
@@ -49,7 +49,8 @@
 
         <div class="form-group" style="margin-top:30px;">
           <%= f.submit "Save Draft", class: "btn btn-warning", style:"width:15%;padding:6px;margin-right:16px;" %>
-          <%= f.submit "Submit", class: "btn btn-primary", style:"width:15%;padding:6px;" %>
+          <%= f.submit "Submit", class: "btn btn-primary", style:"width:15%;padding:6px;margin-right:16px;" %>
+          <%= link_to "Cancel", post_path(@post),class:"btn btn-danger" , style:"width:15%;padding:6px;"%>
         </div>
       <% end %>
 

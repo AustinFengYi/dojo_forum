@@ -33,7 +33,7 @@
 
         <div class="form-group">
           <%= f.label :image, "Image" %>
-          <%= image_tag @post.image, width: '300px' if @post.image? %>
+          <%= image_tag @post.image.url, width: '300px' if @post.image? %>
           <%= f.file_field :image %>
         </div>
 
