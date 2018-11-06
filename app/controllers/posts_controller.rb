@@ -62,7 +62,16 @@ class PostsController < ApplicationController
     end   
   end
 
-  
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    if @post.status == true    
+      flash[:notice] ="Post was successfully deleted"
+    else
+      flash[:notice] ="Post Draft was successfully deleted"
+    end
+    redirect_to root_path
+  end
 
   private
 
