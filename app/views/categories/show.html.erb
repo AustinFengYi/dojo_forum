@@ -1,1 +1,55 @@
-內容
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">DojoForum</h1>
+
+    <div class="col-md-12">
+      <ul class="nav nav-pills nav-pills-center" style="margin-top:25px;">
+        <li role="presentation"><%= link_to "All", root_path %></li>
+        <% @categories.each do |category| %>
+          <li role="presentation" class="<%= "active" if category == @category %>">
+            <%= link_to category.name, category_path(category) %>
+          </li>
+        <% end %>
+      </ul>
+
+      <table class="table" style="margin-top:16px;">
+        <thead>
+          <tr>
+            <th>Replies count</th>
+            <th>Title</th>
+            <th>Last replied at<th>
+            <th>Viewed count</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @posts.each do |post| %>
+            <% if current_user %>
+              <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
+                <tr>
+                  <td class="text-center"></td>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td class="text-center">
+                  </td>
+                  <td class="text-center"></td>
+                </tr>
+              <% end %>
+            
+            <% else %>
+              <% if post.authority == "All" %>
+                <tr>
+                  <td class="text-center"></td>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+ 

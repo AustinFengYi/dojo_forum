@@ -3,10 +3,12 @@
     <h1 class="text-center">DojoForum</h1>
 
     <div class="col-md-12">
-      <ul class="nav nav-pills" style="margin-top:25px;">
+      <ul class="nav nav-pills nav-pills-center" style="margin-top:25px;">
         <li role="presentation" class="active"><%= link_to "All", root_path %></li>
         <% @categories.each do |category| %>
-          <li role="presentation"><%= link_to category.name,category_path(category) %></li>
+          <li role="presentation">
+            <%= link_to category.name, category_path(category) %>
+          </li>
         <% end %>
       </ul>
 
@@ -15,7 +17,7 @@
           <tr>
             <th>Replies count</th>
             <th>Title</th>
-            <th>Last replied at<th>
+            <th>Last replied at</th>
             <th>Viewed count</th>
           </tr>
         </thead>
@@ -25,21 +27,20 @@
             <% if current_user %>
               <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
                 <tr>
-                  <td class="text-center"></td>
+                  <td></td>
                   <td><%= link_to post.title, post_path(post) %></td>
-                  <td class="text-center">
-                  </td>
-                  <td class="text-center"></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               <% end %>
             
             <% else %>
               <% if post.authority == "All" %>
                 <tr>
-                  <td class="text-center"></td>
+                  <td></td>
                   <td><%= link_to post.title, post_path(post) %></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               <% end %>
             <% end %>
