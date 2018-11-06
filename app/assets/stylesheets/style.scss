@@ -8,8 +8,12 @@ body{
   margin: -10px;  
 }
     
-.flash-remind{
-  margin-top: -20px;
+
+.alert {
+  position: absolute;
+  margin-top: 1.0rem;
+  margin-left: 73%;
+  z-index: 99;
 }
 
 /*====post#index category#show====*/ 
