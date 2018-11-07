@@ -7,7 +7,37 @@
         <li role="presentation" class="active"><%= link_to "User List", admin_users_path %></li>        
       </ul>
 
-      
+      <br><br>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr class="active">
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="text-center"><%= link_to user.name, user_path(user) %></td>
+              <td class="text-center"><%= user.email %></td>
+              <td class="text-center">
+                <%= form_for [:admin, user] do |f|%>
+                  <%= f.select(:role) do %>
+                    <% if user.admin? %>
+                      <%= options_for_select([['admin'], ['normal']]) %>
+                    <% else %>
+                      <%= options_for_select([['normal'], ['admin']]) %>
+                    <% end %>
+                  <% end %>
+                  <%= f.submit "Update", class: "btn btn-default" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
   </div>
 </div>
