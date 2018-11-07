@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def collects
     @user = User.find(params[:id])
-    @collects = @user.collects.order(created_at: :desc)
+    @collects = @user.favorites.order(created_at: :desc)
   end
 
   def drafts
