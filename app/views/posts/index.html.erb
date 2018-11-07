@@ -25,23 +25,15 @@
         <tbody>
           <% @posts.each do |post| %>
             <% if current_user %>
-              <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
-                <tr>
-                  <td></td>
-                  <td><%= link_to post.title, post_path(post) %></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              <% end %>
-            
-            <% else %>
-              <% if post.authority == "All" %>
-                <tr>
-                  <td></td>
-                  <td><%= link_to post.title, post_path(post) %></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+             <% if post.status == true %>
+                <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
+                  <tr>
+                    <td></td>
+                    <td><%= link_to post.title, post_path(post) %></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
