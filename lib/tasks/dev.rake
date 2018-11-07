@@ -42,7 +42,7 @@ namespace :dev do
     Post.all.each do |post|
       5.times do |i|
         Reply.create!(
-          content:FFaker::Lorem::sentence(20),
+          content:FFaker::Lorem::sentence(15),
           user_id: User.all.sample.id,
           post_id: post.id
         )

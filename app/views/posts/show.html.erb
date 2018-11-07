@@ -13,7 +13,12 @@
             <!--post content-->
             <tr>
               <td class="col-md-3">
-                <p class="text-center post-content"><%= @post.user.name %></p>
+                <div class="text-center post-content">
+                  <%= link_to root_path do %>
+                    <%= image_tag @post.user.avatar.url,width:"150" if @post.user.avatar? %>
+                    <div style="margin-top: 20px;"><%= @post.user.name %></div>
+                  <% end %>
+                </div>
               </td>
 
               <td class="col-md-9">
