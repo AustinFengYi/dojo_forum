@@ -1,0 +1,47 @@
+<div class="container">  
+  <div class="row">
+    <div class="col-md-12">
+      <%#= render partial: "shared/user_info", locals: {object: @user}  %>
+
+      <br><br> 
+      
+      <ul class="nav nav-tabs">
+        <% if @user == current_user %>
+          <li role="presentation"><%= link_to "My Post", posts_user_path %></li>
+          <li role="presentation"><%= link_to "My Comment", comments_user_path %></li>
+          <li role="presentation"><%= link_to "My Collect", collects_user_path %></li>
+          <li role="presentation" class="active"><%= link_to "My Draft", drafts_user_path %></li>
+          <li role="presentation"><%= link_to "My Friend", friends_user_path %></li>
+        <% else %>
+          <li role="presentation"><%= link_to "#{@user.name}'s Post", posts_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Comment", comments_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Collect", collects_user_path %></li>
+          <li role="presentation" class="active"><%= link_to "#{@user.name}'s Draft", drafts_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Friend", friends_user_path %></li>
+        <% end %>        
+      </ul>
+      
+
+      <br><br>
+
+      <div class="col-md-12">
+        <div class="">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.each do |post| %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
