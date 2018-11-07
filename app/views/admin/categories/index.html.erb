@@ -1,1 +1,46 @@
-後台入口
+<div class="container">
+  <div class="row">
+    <h2 class="text-center" style="letter-spacing: 2px;">管理員後台</h2><br>
+    <div class="col-md-10 col-md-offset-1">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><%= link_to "Category List", admin_categories_path %></li>
+        <li role="presentation"><%= link_to "User List", root_path %></li>        
+      </ul>
+
+      <br>
+
+      <div class="form-inline" >
+        <%= form_for [:admin, @category] do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: "category name", class: "form-control" %>
+          </div>
+          <%= f.submit class: "btn btn-primary" %>
+          <%= link_to "Cancel", admin_categories_path,class:"btn btn-danger" if @category.id.present? %>  
+        <% end %>
+      </div>  
+
+      <br>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr class="active">
+            <th class="text-center">Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td class="text-center"><%= category.name %></td>
+              <td class="text-center">
+                <%= link_to 'Edit', admin_categories_path(id: category.id), class: "btn btn-success" %>
+                <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
