@@ -16,5 +16,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [:edit, :update] do
+    member do
+      get :posts
+      get :comments
+      get :collects
+      get :drafts
+      get :friends
+    end
+  end
+
   resources :categories, only: [:show]
 end
