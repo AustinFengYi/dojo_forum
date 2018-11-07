@@ -1,0 +1,67 @@
+<div class="container">  
+  <div class="row">
+    <div class="col-md-12">
+      <%#= render partial: "shared/user_info", locals: {object: @user}  %>
+
+      <br><br> 
+      
+      <ul class="nav nav-tabs">
+        <% if @user == current_user %>
+          <li role="presentation"><%= link_to "My Post", posts_user_path %></li>
+          <li role="presentation" class="active"><%= link_to "My Comment", comments_user_path %></li>
+          <li role="presentation"><%= link_to "My Collect", collects_user_path %></li>
+          <li role="presentation"><%= link_to "My Draft", drafts_user_path %></li>
+          <li role="presentation"><%= link_to "My Friend", friends_user_path %></li>
+        <% else %>
+          <li role="presentation"><%= link_to "#{@user.name}'s Post", posts_user_path %></li>
+          <li role="presentation" class="active"><%= link_to "#{@user.name}'s Comment", comments_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Collect", collects_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Draft", drafts_user_path %></li>
+          <li role="presentation"><%= link_to "#{@user.name}'s Friend", friends_user_path %></li>
+        <% end %>        
+      </ul>
+      
+      <br><br>
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center" style="font-size: 25px;">Post Title</th>
+            <th class="text-center" style="font-size: 25px;">Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |reply| %>
+            <tr id="reply_<%= reply.id %>" class="reply-background">
+              <td class="col-md-5">
+                <div class="text-center post-content">
+                  <%= reply.post.title %>
+                </div>
+              </td>
+
+              <td class="col-md-7">
+                <div class="reply-content">
+                  <span><%= reply.content %></span>
+                  <br>
+
+                  <% if current_user == reply.user || current_user.admin? %>
+                    <%= link_to post_reply_path(reply.post,reply), remote: true ,method: :delete, data: { confirm: "確定要刪除這個留言嗎?"} do %>
+                      <span class="glyphicon glyphicon-remove post-icon"></span>
+                    <% end %>
+                  <% end %>
+
+                  <% if current_user == reply.user %>
+                    <%= link_to edit_post_reply_path(reply.post,reply),remote: true do %>
+                      <span class="glyphicon glyphicon-pencil post-icon"></span>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
+            </tr> 
+          <% end %>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>

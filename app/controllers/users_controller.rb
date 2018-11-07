@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def comments
     @user = User.find(params[:id])
-    @replies = @user.replies.order(created_at: :desc)
+    @comments = @user.replies.order(created_at: :desc)
   end
 
   def collects
