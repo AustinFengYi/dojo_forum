@@ -93,6 +93,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def feeds
+    
+  end
+
   private
 
 
