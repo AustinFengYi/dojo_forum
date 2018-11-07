@@ -1,5 +1,21 @@
 class UsersController < ApplicationController
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "user info was successfully updated"
+      redirect_to posts_user_path(@user)
+    else
+      flash[:alert] = "user info was failed to update"
+      render :edit 
+    end
+  end 
+
+
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts.where(status: true).order(created_at: :desc)
