@@ -35,7 +35,7 @@
             <tr id="reply_<%= reply.id %>" class="reply-background">
               <td class="col-md-5">
                 <div class="text-center post-content">
-                  <%= reply.post.title %>
+                  <%= link_to reply.post.title, post_path(reply.post) %>
                 </div>
               </td>
 
