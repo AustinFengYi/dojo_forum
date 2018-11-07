@@ -31,8 +31,8 @@
       </div><br>
 
       <div class="form-group">
-        <%= f.label :avatar, "Avatar" %>
-        <%= image_tag @user.avatar, width: '300px' if @user.avatar? %><br>
+        <%= f.label :avatar, "Avatar" %><br>
+        <%= image_tag @user.avatar.url, width: '150px' if @user.avatar? %><br>
         <%= f.file_field :avatar %>
       </div>
 
