@@ -13,4 +13,9 @@ class Post < ApplicationRecord
   def is_favorited?(user)
     self.favorited_users.include?(user)
   end
+
+  def count_views
+    self.viewed_count += 1
+    self.save
+  end
 end

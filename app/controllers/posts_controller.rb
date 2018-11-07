@@ -98,8 +98,8 @@ class PostsController < ApplicationController
     @users = User.all
     @replies = Reply.all
 
-    #@popular_posts = Post.all.order("posts.replies_count DESC").limit(10)
-    #@popular_users = User.all.order("users.user_replies_count DESC").limit(10)
+    @hot_posts = @posts.order("replies_count DESC").limit(10)
+    @hot_users = @users.order("user_replies_count DESC").limit(10)
   end
 
   private

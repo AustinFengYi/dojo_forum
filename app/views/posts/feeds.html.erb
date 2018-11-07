@@ -12,6 +12,13 @@
     font-size: 25px;
     width:33%;
   }
+
+  .hot-title{
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+
 </style>
 
 <div class="container">  
@@ -38,20 +45,37 @@
 
       <div>
         <div class="col-md-6">
-          <div class="post_info_title text-center">Chatterbox</div>
-          <hr class="post_info_line">
-          <table>
+          <div class="hot-title text-center">Chatterbox</div>
+          <hr>
+          <table style="margin-top: 25px;">
             <tbody>
-              
+              <% i = 1 %>
+              <% @hot_users.each do |user| %>
+                <tr style="font-size: 16px;">
+                  <td class="pull-right" style="margin-right: 10px;"><%= i %>.</td>
+                  <td><%= link_to user.name, root_path %></td>
+                  <td style="padding-left: 20px;"><%= user.user_replies_count %></td>
+                </tr>
+                <% i += 1 %>
+              <% end %>
             </tbody>
           </table>
         </div>
 
         <div class="col-md-6">
-          <div class="post_info_title text-center">Most Popular Post</div>
-          <hr class="post_info_line">
-          <table>
+          <div class="hot-title text-center">Most Popular Post</div>
+          <hr>
+          <table style="margin-top: 25px;">
             <tbody>
+              <% i = 1 %>
+              <% @hot_posts.each do |post| %>
+                <tr style="font-size: 16px;">
+                  <td class="pull-right" style="margin-right: 10px;"><%= i %>.</td>
+                  <td><%= link_to truncate(post.title , length:50 ), post_path(post) %></td>
+                  <td><%= post.created_at.strftime("%Y-%m-%d") %></td>
+                </tr>
+                <% i += 1 %>
+              <% end %>
             </tbody>
           </table>
         </div>
