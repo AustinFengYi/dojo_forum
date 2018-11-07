@@ -1,11 +1,11 @@
 <tr id="reply_<%= reply.id %>" class="reply-background">
-  <td class=_col-md-3>
+  <td class="col-md-3">
     <p class="text-center reply-content"><%= reply.user.name %></p>
   </td>
 
-  <td class=_col-md-9>
+  <td class="col-md-9">
     <div class="reply-content">
-      <%= reply.content  %>
+      <span><%= reply.content %></span>
       <br>
 
       <% if current_user == reply.post.user || reply.post.current_user.admin? %>
@@ -15,10 +15,10 @@
       <% end %>
 
       <% if current_user == reply.post.user %>
-        <%= link_to edit_post_reply_path(reply) do %>
+        <%= link_to edit_post_reply_path(@post,reply),remote: true do %>
           <span class="glyphicon glyphicon-pencil post-icon"></span>
         <% end %>
       <% end %>
     </div>
   </td>
-</tr>
+</tr> 

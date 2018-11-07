@@ -1,0 +1,13 @@
+<% html = j( render :partial => "replies/reply", :locals => { :reply => @reply } ) %>
+$("#reply_<%= @reply.id %>").fadeOut(400,function(){
+  $(this).replaceWith("<%= html %>");
+}); 
+
+
+
+
+
+
+
+
+

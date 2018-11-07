@@ -1,0 +1,4 @@
+<% html = j( render :partial => "form", :locals => { :reply => @reply } ) %>
+var reply_spans = $("#reply_<%= @reply.id %>").children();
+$(reply_spans[1]).html("<%= html %>") 
+

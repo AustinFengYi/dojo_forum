@@ -1,0 +1,12 @@
+<%= form_for [@post,@reply], remote: true  do |f| %>
+  <div class="form-inline">
+    <div class="reply-group">
+      <%= f.text_field :content ,class: "form-control" %>
+    </div>
+
+    <div class="reply-group" style="margin-top: 10px;">
+      <%= f.submit "Update", :class => "btn btn-success" %>
+      <%= button_tag t('buttons.Cancel'), class: "btn btn-danger", type: "submit", name: "cancel", value: true %>
+    </div>
+  </div>
+<% end %> 

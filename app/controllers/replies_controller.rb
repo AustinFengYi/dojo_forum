@@ -13,6 +13,23 @@ class RepliesController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:post_id])
+    @reply = @post.replies.find(params[:id])    
+  end
+
+  def update    
+    @post = Post.find(params[:post_id])
+    @reply = @post.replies.find(params[:id])    
+    respond_to do |format|
+      if @reply.update(reply_params)
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+
   def destroy
     @post = Post.find(params[:post_id])
     @reply = @post.replies.find(params[:id])    
