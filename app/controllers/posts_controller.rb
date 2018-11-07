@@ -76,15 +76,21 @@ class PostsController < ApplicationController
 
   def favorite
     @post = Post.find(params[:id]) 
-    Favorite.create(post: @post, user: current_user) 
-    redirect_back(fallback_location: root_path)  # 導回上一頁
+    Favorite.create(post: @post, user: current_user)
+    #redirect_back(fallback_location: root_path)  # 導回上一頁 
+    respond_to do |format|
+      format.js
+    end
   end
 
   def unfavorite
     @post = Post.find(params[:id])
     @favorite = Favorite.where(post: @post, user: current_user).first
     @favorite.destroy
-    redirect_back(fallback_location: root_path)
+    #redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

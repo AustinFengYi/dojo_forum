@@ -1,0 +1,2 @@
+var collect = $("#favorite-<%= @post.id %>");
+collect.html("<%= j(render :partial => 'shared/favorite', :locals => {:post => @post}) %>");

@@ -1,5 +1,7 @@
-<% if post.is_favorited?(current_user) %>
-  <%= link_to 'Uncollect',unfavorite_post_path(post), method: :post,class: "btn btn-warning"%>
-<% else %>
-  <%= link_to 'Collect', favorite_post_path(post), method: :post, class: "btn btn-default" %>
-<% end %>
+<div id="favorite-<%= @post.id%>">
+  <% if post.is_favorited?(current_user) %>
+    <%= link_to 'Uncollect',unfavorite_post_path(post),remote: true,method: :post,class: "btn btn-warning"%>
+  <% else %>
+    <%= link_to 'Collect', favorite_post_path(post),remote: true, method: :post, class: "btn btn-default" %>
+  <% end %>
+</div>
