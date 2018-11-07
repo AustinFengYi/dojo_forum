@@ -3,7 +3,8 @@
     <div class="col-md-12">
 
       <div class="post-title">
-        <h2><%= @post.title %></h2>       
+        <h2 class="pull-left"><%= @post.title %><h2>
+        <h2 class="pull-right"><%= render partial:"shared/favorite",locals:{post: @post} %></h2>   
       </div>
       
       <div class="post-item">

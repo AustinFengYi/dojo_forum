@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   root "posts#index"
   resources :posts do
     resources :replies
+
+    member do
+      post :favorite
+      post :unfavorite
+    end
   end
 
   resources :categories
