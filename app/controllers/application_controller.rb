@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:introduction,:avatar])
   end
+
+  private
+
+  def authenticate_admin
+    unless current_user.admin?
+      flash[:alert] = "you are not allowed to enter Admin page !"
+      redirect_to root_path
+    end
+  end
 end
