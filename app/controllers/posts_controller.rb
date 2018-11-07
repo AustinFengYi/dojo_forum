@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.where(status:true).order(created_at: :desc).page(params[:page]).per(10)
     @categories = Category.all
   end
 
-  def new
+  def new 
     @post = Post.new
   end
 

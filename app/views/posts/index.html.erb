@@ -20,7 +20,7 @@
             <th>Last replied at</th>
             <th>Viewed count</th>
           </tr>
-        </thead>
+        </thead> 
 
         <tbody>
           <% @posts.each do |post| %>
@@ -39,7 +39,10 @@
           <% end %>
         </tbody>
       </table>
-      
+      <div class="text-center">
+        <%= paginate @posts %>
+      </div> 
+                 
     </div>
   </div>
 </div>
