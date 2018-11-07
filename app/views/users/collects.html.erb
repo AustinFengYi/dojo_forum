@@ -1,10 +1,12 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12">
-      <%#= render partial: "shared/user_info", locals: {object: @user}  %>
+      <%= render partial:"shared/user_info",locals:{:user => @user} %>
 
-      <br><br> 
-      
+      <div class="clearfix"></div>
+
+      <br><br><br>
+            
       <ul class="nav nav-tabs">
         <% if @user == current_user %>
           <li role="presentation"><%= link_to "My Post", posts_user_path %></li>
