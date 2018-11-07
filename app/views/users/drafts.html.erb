@@ -25,22 +25,39 @@
       <br><br>
 
       <div class="col-md-12">
-        <div class="">
+        <% if @user == current_user %>
           <table class="table">
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Status</th>
                 <th>Date</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @posts.each do |post| %>
+                <tr>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td>Draft</td>
+                  <td><%= post.created_at.strftime("%Y-%m-%d") %></td>
+                  <td>
+                    <%= link_to post_path(post), method: :delete, data: { confirm: "確定要刪除本則貼文嗎?"} do %>
+                      <span class="glyphicon glyphicon-remove post-icon"></span>
+                    <% end %>
+                  
+
+                    <%= link_to edit_post_path(post) do %>
+                      <span class="glyphicon glyphicon-pencil post-icon"></span>
+                    <% end %>
+                  </td>
+                </tr>                
               <% end %>
             </tbody>
           </table>
-        </div>
+        <% else %>
+          <div class="text-center" style="font-size: 25px;">對不起，只有作者本人有合法權限去觀看此項紀錄</div>
+        <% end %>
+        
       </div> 
     </div>
   </div>
