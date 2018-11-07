@@ -29,7 +29,7 @@
               <% @hot_users.each do |user| %>
                 <tr style="font-size: 16px;">
                   <td class="pull-right" style="margin-right: 10px;"><%= i %>.</td>
-                  <td><%= link_to user.name, root_path %></td>
+                  <td><%= link_to user.name, posts_user_path(user) %></td>
                   <td style="padding-left: 20px;"><%= user.user_replies_count %></td>
                 </tr>
                 <% i += 1 %>
