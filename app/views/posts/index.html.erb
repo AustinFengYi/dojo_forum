@@ -25,7 +25,7 @@
         <tbody>
           <% @posts.each do |post| %>
             <% if current_user %>
-             <% if post.status == true %>
+              <% if post.status == true %>
                 <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
                   <tr>
                     <td></td>
