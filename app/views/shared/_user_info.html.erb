@@ -7,7 +7,7 @@
   <div class="col-md-8" style="margin-top: 20px;">
     <p><%= simple_format user.introduction,style:"font-size:16px;" %></p>
     <% if user == current_user %>
-      <%= link_to 'Edit', edit_user_path(user), class: "btn btn-default"%>
+      <%= link_to 'Edit', edit_user_path(user), class: "btn btn-default pull-right"%>
     <% else %>
       
     <% end %>
