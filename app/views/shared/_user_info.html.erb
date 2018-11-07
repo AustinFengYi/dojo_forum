@@ -1,0 +1,15 @@
+<div class="col-md-10 col-md-offset-1 user-info">
+  <div class="col-md-3 text-center">
+    <%= image_tag user.avatar.url,width:"150" if user.avatar? %>
+    <div style="margin-top: 10px;font-size: 20px;"><%= user.name %></div>
+  </div>
+
+  <div class="col-md-8" style="margin-top: 20px;">
+    <p><%= simple_format user.introduction,style:"font-size:16px;" %></p>
+    <% if user == current_user %>
+      <%= link_to 'Edit', edit_user_path(user), class: "btn btn-default"%>
+    <% else %>
+      
+    <% end %>
+  </div>
+</div>
