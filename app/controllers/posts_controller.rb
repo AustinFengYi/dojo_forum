@@ -94,7 +94,12 @@ class PostsController < ApplicationController
   end
 
   def feeds
-    
+    @posts = Post.all
+    @users = User.all
+    @replies = Reply.all
+
+    #@popular_posts = Post.all.order("posts.replies_count DESC").limit(10)
+    #@popular_users = User.all.order("users.user_replies_count DESC").limit(10)
   end
 
   private

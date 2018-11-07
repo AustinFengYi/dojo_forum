@@ -1,1 +1,62 @@
-feed page
+<style>
+  .feed-board{
+    background-color: #ebf5ff;
+    padding: 30px;
+  }
+
+  .feed-table{
+    width:100%;
+  }
+
+  .feed-table td{
+    font-size: 25px;
+    width:33%;
+  }
+</style>
+
+<div class="container">  
+  
+    <div class="col-md-12">
+      <div class="feed-board">
+        <table class="text-center feed-table">
+          <tbody>
+            <tr>
+              <td>User</td>
+              <td>Post</td>
+              <td>Comment</td>
+            </tr>
+            <tr>
+              <td><span class="label label-warning" style="padding:8px 25px;"><%= @users.count %></span></td>
+              <td><span class="label label-warning" style="padding:8px 25px;"><%= @posts.count %></span></td>
+              <td><span class="label label-warning" style="padding:8px 25px;"><%= @replies.count %></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br><br><br>
+
+      <div>
+        <div class="col-md-6">
+          <div class="post_info_title text-center">Chatterbox</div>
+          <hr class="post_info_line">
+          <table>
+            <tbody>
+              
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <div class="post_info_title text-center">Most Popular Post</div>
+          <hr class="post_info_line">
+          <table>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </div>
+  
+</div>
