@@ -1,7 +1,7 @@
 <tr id="reply_<%= reply.id %>" class="reply-background">
   <td class="col-md-3">
     <div class="text-center post-content">
-      <%= link_to root_path do %>
+      <%= link_to posts_user_path(reply.user)  do %>
         <%= image_tag reply.user.avatar.url,width:"150" if reply.user.avatar? %>
         <div style="margin-top: 20px;"><%= reply.user.name %></div>
       <% end %>

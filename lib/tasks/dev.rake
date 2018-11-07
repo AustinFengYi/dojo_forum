@@ -20,8 +20,8 @@ namespace :dev do
     puts "now you have #{User.count} users"
   end
 
-  task fake_post: :environment do
-    Post.destroy_all
+  task fake_post_submit: :environment do
+    Post.where(status: true ).destroy_all
     120.times do |i|
       file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
 
@@ -29,17 +29,39 @@ namespace :dev do
         title: FFaker::Lorem::sentence(10),
         content: FFaker::Lorem::sentence(40),
         image: file,
+        status:true,
         user_id: User.all.sample.id,
         category_id: Category.all.sample.id
         )
     end
 
-    puts "have create fake posts"
-    puts "now you have #{Post.count} posts"
+    puts "have create fake submit posts "
+    puts "now you have #{Post.where(status:true).count} submit posts"
+  end
+
+  task fake_post_draft: :environment do
+    Post.where(status: false ).destroy_all
+
+    User.all.each do |user|
+      3.times do |i|
+        file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
+
+        Post.create!(
+          title: FFaker::Lorem::sentence(10),
+          content: FFaker::Lorem::sentence(40),
+          image: file,
+          status:false,
+          user_id: User.all.sample.id,
+          category_id: Category.all.sample.id
+          )
+      end
+    end
+    puts "have create fake draft posts"
+    puts "now you have #{Post.where(status:false).count} draft posts"
   end
 
   task fake_reply: :environment do
-    Post.all.each do |post|
+    Post.where(status: true).each do |post|
       5.times do |i|
         Reply.create!(
           content:FFaker::Lorem::sentence(15),
@@ -55,7 +77,7 @@ namespace :dev do
   task fake_favorite: :environment do
     Favorite.destroy_all
 
-    @posts = Post.all
+    @posts = Post.where(status:true)
     @users = User.all 
 
       100.times do |i|

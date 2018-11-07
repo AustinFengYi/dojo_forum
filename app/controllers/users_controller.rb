@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts.where(status: true).order(created_at: :desc)
-  end
+  end 
 
   def comments
     @user = User.find(params[:id])

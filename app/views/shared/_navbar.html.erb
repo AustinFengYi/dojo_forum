@@ -26,7 +26,7 @@
           <li style="font-size: 15px;"><%= link_to "(Admin)",root_path %>
           </li> 
 
-          <li style="font-size: 15px;"><%= link_to root_path do %>
+          <li style="font-size: 15px;"><%= link_to posts_user_path(current_user) do %>
             <span class="glyphicon glyphicon-pencil"></span> Profile
           <% end %>
           </li> 
