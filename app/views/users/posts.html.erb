@@ -1,9 +1,28 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12">
-      <%#= render partial: "shared/user_info", locals: {object: @user}  %>
+      <div id="user_info">
+        <div class="col-md-3 text-center">
+          <%= link_to posts_user_path(@user) do %>
+            <%= image_tag @user.avatar.url,width:"150" if @user.avatar? %>
+            <div style="margin-top: 20px;"><%= @user.name %></div>
+          <% end %>
+          <div id="user_name"><%= @user.name %></div>
+        </div>
+
+        <div class="col-md-9">
+          <p><%= simple_format @user.introduction %></p>
+          <% if @user == current_user %>
+            <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default", id: "edit_user" %>
+          <% else %>
+            
+          <% end %>
+        </div>
+      </div>
 
       <br><br> 
+
+      <div class="clearfix"></div>
       
       <ul class="nav nav-tabs">
         <% if @user == current_user %>
