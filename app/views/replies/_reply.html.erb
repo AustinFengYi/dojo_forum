@@ -8,13 +8,13 @@
       <span><%= reply.content %></span>
       <br>
 
-      <% if current_user == reply.post.user || reply.post.current_user.admin? %>
+      <% if current_user == reply.user || current_user.admin? %>
         <%= link_to post_reply_path(@post,reply), remote: true ,method: :delete, data: { confirm: "確定要刪除這個留言嗎?"} do %>
           <span class="glyphicon glyphicon-remove post-icon"></span>
         <% end %>
       <% end %>
 
-      <% if current_user == reply.post.user %>
+      <% if current_user == reply.user %>
         <%= link_to edit_post_reply_path(@post,reply),remote: true do %>
           <span class="glyphicon glyphicon-pencil post-icon"></span>
         <% end %>
