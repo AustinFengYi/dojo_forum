@@ -29,7 +29,10 @@
           <table class="table">
             <tbody>
               <% @collects.each do |collect| %>
-                
+                <tr>
+                  <td><%= link_to collect.post.title, post_path(collect.post) %></td>
+                  <td><%= render partial:"shared/favorite",locals:{post: collect.post} %></td>
+                </tr>
               <% end %>
             </tbody>
           </table>

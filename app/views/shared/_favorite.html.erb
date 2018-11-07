@@ -1,4 +1,4 @@
-<div id="favorite-<%= @post.id%>">
+<div id="favorite-<%= post.id%>">
   <% if post.is_favorited?(current_user) %>
     <%= link_to 'Uncollect',unfavorite_post_path(post),remote: true,method: :post,class: "btn btn-warning"%>
   <% else %>
