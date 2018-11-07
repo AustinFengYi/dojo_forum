@@ -13,6 +13,17 @@ class RepliesController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:post_id])
+    @reply = @post.replies.find(params[:id])    
+    @reply.destroy
+    respond_to do |format|
+      #format.html{redirect_to post_url(@reply.post),notice:"comment was successfully deleted" }
+      #format.json{head :no_content}  
+      format.js
+    end
+  end
+
 
   private
 

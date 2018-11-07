@@ -1,0 +1,24 @@
+<tr id="reply_<%= reply.id %>" class="reply-background">
+  <td class=_col-md-3>
+    <p class="text-center reply-content"><%= reply.user.name %></p>
+  </td>
+
+  <td class=_col-md-9>
+    <div class="reply-content">
+      <%= reply.content  %>
+      <br>
+
+      <% if current_user == reply.post.user || reply.post.current_user.admin? %>
+        <%= link_to post_reply_path(@post,reply), remote: true ,method: :delete, data: { confirm: "確定要刪除這個留言嗎?"} do %>
+          <span class="glyphicon glyphicon-remove post-icon"></span>
+        <% end %>
+      <% end %>
+
+      <% if current_user == reply.post.user %>
+        <%= link_to edit_post_reply_path(reply) do %>
+          <span class="glyphicon glyphicon-pencil post-icon"></span>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>
