@@ -4,9 +4,15 @@
 
       <div class="post-title">
         <h2 class="pull-left"><%= @post.title %><h2>
-        <h2 class="pull-right"><%= render partial:"shared/favorite",locals:{post: @post} %></h2>   
+        <h2 class="pull-right"><%= render partial:"shared/favorite",locals:{post: @post} %></h2>  
+        <div class="clearfix"></div>
+        <% @post.categories.each do |category| %>
+          <span style="font-size: 10px;margin-left: 5px;padding: 8px;letter-spacing: 2px;" class="label label-success"><%= category.name %></span>  
+        <% end %> 
       </div>
       
+      <br>
+
       <div class="post-item">
         <table class="table table-bordered">
           <tbody>
