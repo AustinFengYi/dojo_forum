@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     #@sort = Post.where(status: true).ransack(params[:sort])
     #@posts = @sort.order(created_at: :desc).page(params[:page]).per(10)
     @q = Post.where(status: true).ransack(params[:q])
-    @posts = @q.result.order(id: :asc).page(params[:page]).per(10)
+    @posts = @q.result.order(id: :asc).page(params[:page]).per(20)
 
     @categories = Category.all
   end
@@ -41,7 +41,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])   
     @reply = @post.replies.new
-    @replies = @post.replies.order(created_at: :asc)
+    #@replies = @post.replies.order(created_at: :asc)
+    @replies = @post.replies.order(created_at: :asc).page(params[:page]).per(20)
 
     # count views
     @post.count_views
