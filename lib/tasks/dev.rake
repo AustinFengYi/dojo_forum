@@ -80,11 +80,9 @@ namespace :dev do
   end
 
   task last_reply: :environment do
-    Post.all.each do |post|
-      if post.replies_count > 0
-        post.last_replied_at = post.replies.order(created_at: :desc).first.created_at
-        post.save
-      end
+    Post.all.each do |post|  
+      post.last_replied_at = post.replies.order(created_at: :desc).first.created_at
+      post.save 
     end
     puts "done"
   end

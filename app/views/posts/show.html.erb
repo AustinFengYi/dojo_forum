@@ -1,74 +1,22 @@
 <div class="container">  
   <div class="row">
     <div class="col-md-12">
+      <% if @post.authority == "All" || @post.user == current_user %> 
+        <%= render partial:"shared/post_show" %>
 
-      <div class="post-title">
-        <h2 class="pull-left"><%= @post.title %><h2>
-        <h2 class="pull-right"><%= render partial:"shared/favorite",locals:{post: @post} %></h2>  
-        <div class="clearfix"></div>
-        <% @post.categories.each do |category| %>
-          <span style="font-size: 10px;margin-left: 5px;padding: 8px;letter-spacing: 2px;" class="label label-success"><%= category.name %></span>  
-        <% end %> 
-      </div>
-      
-      <br>
+      <% elsif @post.authority == "Myself" %>
+        <h2 class="text-center" style="margin-top: 100px;">只有作者 <%= @post.user.name %> 本人有權限去觀看此則貼文</h2>
 
-      <div class="post-item">
-        <table class="table table-bordered">
-          <tbody>
-            <!--post content-->
-            <tr>
-              <td class="col-md-3">
-                <div class="text-center post-content">
-                  <%= link_to posts_user_path(@post.user) do %>
-                    <%= image_tag @post.user.avatar.url,width:"150" if @post.user.avatar? %>
-                    <div style="margin-top: 20px;"><%= @post.user.name %></div><br>
-                    <%= render partial: "shared/friend", locals: { user: @post.user } %>
-                  <% end %>
-                </div>
-              </td>
+      <% elsif @post.authority == "Friend" %>
+        <% if @post.user.friend?(current_user) %>
+          <%= render partial:"shared/post_show" %>
 
-              <td class="col-md-9">
-                <div class="post-content">
-                  <%= image_tag @post.image.url,width:"500px",height:"300px" if @post.image? %>
-
-                  <p style="margin-top: 15px;"><%= @post.content %></p>
-
-                  <% if current_user == @post.user || current_user.admin? %>
-                    <%= link_to post_path(@post), method: :delete, data: { confirm: "確定要刪除本則貼文嗎?"} do %>
-                      <span class="glyphicon glyphicon-remove post-icon"></span>
-                    <% end %>
-                  <% end %>
-
-                  <% if current_user == @post.user %>
-                    <%= link_to edit_post_path(@post) do %>
-                      <span class="glyphicon glyphicon-pencil post-icon"></span>
-                    <% end %>
-                  <% end %>
-                </div>
-              </td>
-            </tr>       
-
-            <!--reply content-->  
-            <% @replies.each do |reply| %>
-              <%= render :partial => 'replies/reply', locals: {reply: reply } %>
-            <% end %>
-             
-          </tbody>
-        </table>
-      </div>
-
-      <div class="post-reply">
-        <%= form_for [@post, @reply] do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content, rows:"3", placeholder: "請寫下留言內容", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit "Submit" ,class: "btn btn-primary" %>
-          </div>
+        <% else %>
+          <h2 class="text-center" style="margin-top: 100px;">你不是 <%= @post.user.name %> 的朋友，沒有權限去觀看此則貼文</h2>
+          
         <% end %>
-      </div>
-            
+      <% end %>
+
     </div>
   </div>
 </div>

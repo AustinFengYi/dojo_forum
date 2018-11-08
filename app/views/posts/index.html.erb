@@ -22,7 +22,7 @@
           </tr>
         </thead> 
 
-        <tbody>
+        <tbody> 
           <% @posts.each do |post| %>
             <% if current_user %>
               <% if post.status == true %>
@@ -31,6 +31,7 @@
                     <td class="text-center"><%= post.replies_count %></td>
                     <td>
                       <%= link_to truncate(post.title,length:120), post_path(post) %>
+                      --<%= post.authority %>
                       <% post.categories.each do |category| %>
                         <span style="font-size: 10px;margin-left: 5px" class="label label-success"><%= category.name %></span>  
                       <% end %>
