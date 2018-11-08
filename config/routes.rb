@@ -40,4 +40,12 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update]
     root "categories#index"
   end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      post "/login" => "auth#login"
+      post "/logout" => "auth#logout"
+      resources :posts, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
 end
