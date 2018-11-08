@@ -9,7 +9,9 @@
     <% if user == current_user %>
       <%= link_to 'Edit', edit_user_path(user), class: "btn btn-default pull-right"%>
     <% else %>
-      
+      <span class="pull-right">
+        <%= render partial: "shared/friend", locals: { user: user } %>
+      </span>
     <% end %>
   </div>
 </div>

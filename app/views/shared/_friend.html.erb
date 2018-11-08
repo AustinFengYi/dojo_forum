@@ -1,0 +1,12 @@
+<% if user != current_user %>
+  <% if current_user.friend?(user) %>
+    <%= link_to '取消好友',friendship_path(user),method: :delete,class:"btn btn-danger" %>
+  <% elsif current_user.unconfirm_friend?(user) %>
+    <%= link_to '收回好友邀請',friendship_path(user),method: :delete,class:"btn btn-warning" %>
+  <% elsif current_user.request_friend?(user) %>
+    <label class="label label-info">等待回覆</label>
+  <% else %>
+    <%= link_to '要求成為好友',friendships_path(friend_id:user),method: :post,class:"btn btn-success" %>            
+  <% end %>
+<% end %>
+
