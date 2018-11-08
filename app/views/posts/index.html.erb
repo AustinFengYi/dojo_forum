@@ -15,10 +15,10 @@
       <table class="table" style="margin-top:16px;">
         <thead>
           <tr>
-            <th>Replies count</th>
+            <th><%= sort_link(@q, :replies_count, 'Replies Count', default_order: :desc) %></th>
             <th>Title</th>
-            <th>Last replied at</th>
-            <th>Viewed count</th>
+            <th><%= sort_link(@q, :last_replied_at, 'Last replied at', default_order: :desc) %></th>
+            <th><%= sort_link(@q, :viewed_count, 'Viewed Count', default_order: :desc) %></th>
           </tr>
         </thead> 
 
@@ -28,10 +28,10 @@
               <% if post.status == true %>
                 <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
                   <tr>
-                    <td></td>
+                    <td><%= post.replies_count %></td>
                     <td><%= link_to post.title, post_path(post) %></td>
-                    <td></td>
-                    <td></td>
+                    <td><%= post.last_replied_at.to_s.slice(0..9) %></td>
+                    <td><%= post.viewed_count %></td>
                   </tr>
                 <% end %>
               <% end %>

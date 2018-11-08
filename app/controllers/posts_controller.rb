@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.where(status:true).order(created_at: :desc).page(params[:page]).per(10)
+    #@sort = Post.where(status: true).ransack(params[:sort])
+    #@posts = @sort.order(created_at: :desc).page(params[:page]).per(10)
+    @q = Post.where(status: true).ransack(params[:q])
+    @posts = @q.result.order(id: :asc).page(params[:page]).per(10)
+
     @categories = Category.all
   end
 
@@ -19,7 +23,7 @@ class PostsController < ApplicationController
     end
 
     if @post.save  
-      if @post.status == true    
+      if @post.status == true 
         flash[:notice] = "Post was successfully created"
       else
         flash[:notice] = "Post Draft was successfully created"
@@ -35,6 +39,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])   
     @reply = @post.replies.new
     @replies = @post.replies.order(created_at: :asc)
+
+    # count views
+    @post.count_views
+    @post.save
   end 
 
   def edit

@@ -5,6 +5,9 @@ class RepliesController < ApplicationController
     @reply.user = current_user
 
     if @reply.save
+      @post.last_replied_at = @reply.created_at 
+      @post.save
+      
       flash[:notice] = "a comment is successfully created"
       redirect_to post_path(@post)
     else
