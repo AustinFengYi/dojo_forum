@@ -37,7 +37,9 @@
             <% @friends.each do |friend| %>
               <div class="friend-item text-center">
                 <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
-                <p class="text-primary inline"><%= friend.name %></p>
+                <p class="text-primary inline">
+                  <%= link_to friend.name, posts_user_path(friend) %>
+                </p>
                 <%= render partial: "shared/friend", locals: { user: friend } %>
               </div>
             <% end %>
@@ -54,7 +56,9 @@
             <% @unconfirm_friends.each do |friend| %>
               <div class="friend-item text-center">
                 <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
-                <p class="text-primary inline"><%= friend.name %></p>
+                <p class="text-primary inline">
+                  <%= link_to friend.name, posts_user_path(friend) %>
+                </p>
                 <%= render partial: "shared/friend", locals: { user: friend } %>
               </div>
             <% end %>
@@ -71,7 +75,9 @@
             <% @request_friends.each do |friend| %>
               <div class="friend-item text-center">
                 <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
-                <p class="text-primary inline"><%= friend.name %></p>
+                <p class="text-primary inline">
+                  <%= link_to friend.name, posts_user_path(friend) %>
+                </p>
                 <p><%= link_to "接受好友邀請", confirm_friendship_path(current_user, friend), class: "btn btn-primary", method: :post %></p>
                 <p><%= link_to "拒絕好友邀請", refuse_friendship_path(current_user, friend), class: "btn btn-danger", method: :delete %></p>
               </div>
