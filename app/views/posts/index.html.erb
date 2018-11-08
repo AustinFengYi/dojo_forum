@@ -28,10 +28,10 @@
               <% if post.status == true %>
                 <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
                   <tr>
-                    <td><%= post.replies_count %></td>
+                    <td class="text-center"><%= post.replies_count %></td>
                     <td><%= link_to post.title, post_path(post) %></td>
-                    <td><%= post.last_replied_at.to_s.slice(0..9) %></td>
-                    <td><%= post.viewed_count %></td>
+                    <td><%= post.last_replied_at.try(:strftime,("%Y-%m-%d")) %></td>
+                    <td class="text-center"><%= post.viewed_count %></td>
                   </tr>
                 <% end %>
               <% end %>
@@ -39,10 +39,10 @@
             <% else%>
               <% if post.authority == "All" %>
                 <tr>
-                  <td></td>
+                  <td class="text-center"><%= post.replies_count %></td>
                   <td><%= link_to post.title, post_path(post) %></td>
-                  <td></td>
-                  <td></td> 
+                  <td><%= post.last_replied_at.try(:strftime,("%Y-%m-%d")) %></td>
+                  <td class="text-center"><%= post.viewed_count %></td>                
                 </tr>
               <% end %>
             <% end %>
