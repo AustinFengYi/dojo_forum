@@ -24,6 +24,9 @@ class PostsController < ApplicationController
 
     if @post.save  
       if @post.status == true 
+        @post.last_replied_at = @post.created_at
+        @post.save
+        
         flash[:notice] = "Post was successfully created"
       else
         flash[:notice] = "Post Draft was successfully created"

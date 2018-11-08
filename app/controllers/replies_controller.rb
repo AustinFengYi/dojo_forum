@@ -3,7 +3,7 @@ class RepliesController < ApplicationController
     @post = Post.find(params[:post_id])
     @reply = @post.replies.create(reply_params)
     @reply.user = current_user
-
+    
     if @reply.save
       @post.last_replied_at = @reply.created_at 
       @post.save

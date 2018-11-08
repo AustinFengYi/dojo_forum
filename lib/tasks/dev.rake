@@ -74,6 +74,16 @@ namespace :dev do
     puts "now you have #{Reply.count} replies"
   end
 
+  task last_reply: :environment do
+    Post.all.each do |post|
+      if post.replies_count > 0
+        post.last_replied_at = post.replies.order(created_at: :desc).first.created_at
+        post.save
+      end
+    end
+    puts "done"
+  end
+
   task fake_favorite: :environment do
     Favorite.destroy_all
 
@@ -89,6 +99,25 @@ namespace :dev do
 
     puts "have created fake 100 collects data."
     puts "now you have #{Favorite.count} Collects data"
+  end
+
+  task fake_friend: :environment do
+    Friendship.destroy_all
+
+    200.times do |i|
+      user = User.all.sample
+      friend_id = User.all.sample.id
+      friendship = Friendship.where(user: User.find(friend_id), friend_id: user.id).first
+      
+      if friendship == nil && user.id != friend_id
+        Friendship.create(
+          user: user,
+          friend_id: friend_id,
+        )
+      end
+    end
+
+    puts "Now there are #{Friendship.count} possible friendships"
   end
 
 end  
