@@ -35,7 +35,7 @@
           </div>
           <div class="panel-center panel-body">
             <% @friends.each do |friend| %>
-              <div class="friend-item text-center">
+              <div class="friend-item text-center col-xs-12 col-sm-6 col-md-3">
                 <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
                 <p class="text-primary inline">
                   <%= link_to friend.name, posts_user_path(friend) %>
@@ -56,7 +56,7 @@
             </div>
             <div class="panel-center panel-body">
               <% @unconfirm_friends.each do |friend| %>
-                <div class="friend-item text-center">
+                <div class="friend-item text-center col-xs-12 col-sm-6 col-md-3">
                   <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
                   <p class="text-primary inline">
                     <%= link_to friend.name, posts_user_path(friend) %>
@@ -75,7 +75,7 @@
             </div>
             <div class="panel-center panel-body">
               <% @request_friends.each do |friend| %>
-                <div class="friend-item text-center">
+                <div class="friend-item text-center col-xs-12 col-sm-6 col-md-3">
                   <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
                   <p class="text-primary inline">
                     <%= link_to friend.name, posts_user_path(friend) %>
