@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   validates_presence_of :title, :content
 
   belongs_to :user
-  belongs_to :category
+  #belongs_to :category
+  has_many :post_categories, dependent: :destroy
+  has_many :categories, through: :post_categories, source: :category
 
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites,source: :user
