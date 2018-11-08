@@ -29,7 +29,10 @@
                 <% if current_user.admin? || current_user == post.user || post.authority == "All" || post.authority == "Friend" %>
                   <tr>
                     <td class="text-center"><%= post.replies_count %></td>
-                    <td><%= link_to post.title, post_path(post) %></td>
+                    <td>
+                      <%= link_to truncate(post.title,length:100), post_path(post) %>
+                      <span style="font-size: 10px;margin-left: 10px;" class="label label-success"><%= post.category.name %></span>
+                    </td>
                     <td><%= post.last_replied_at.try(:strftime,("%Y-%m-%d")) %></td>
                     <td class="text-center"><%= post.viewed_count %></td>
                   </tr>
@@ -40,9 +43,12 @@
               <% if post.authority == "All" %>
                 <tr>
                   <td class="text-center"><%= post.replies_count %></td>
-                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td>
+                    <%= link_to truncate(post.title,length:100), post_path(post) %>
+                    <span style="font-size: 10px;margin-left: 10px;" class="label label-success"><%= post.category.name %></span>
+                  </td>
                   <td><%= post.last_replied_at.try(:strftime,("%Y-%m-%d")) %></td>
-                  <td class="text-center"><%= post.viewed_count %></td>                
+                  <td class="text-center"><%= post.viewed_count %></td>
                 </tr>
               <% end %>
             <% end %>

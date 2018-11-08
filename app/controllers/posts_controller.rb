@@ -46,7 +46,6 @@ class PostsController < ApplicationController
 
     # count views
     @post.count_views
-    @post.save
   end 
 
   def edit
