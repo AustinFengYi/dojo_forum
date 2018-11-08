@@ -26,7 +26,7 @@ namespace :dev do
       file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
 
       Post.create!(
-        title: FFaker::Lorem::sentence(6),
+        title: FFaker::Lorem::sentence(5),
         content: FFaker::Lorem::sentence(40),
         image: file,
         status:true,
@@ -46,7 +46,7 @@ namespace :dev do
         file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
 
         Post.create!(
-          title: FFaker::Lorem::sentence(6),
+          title: FFaker::Lorem::sentence(5),
           content: FFaker::Lorem::sentence(40),
           image: file,
           status:false,
