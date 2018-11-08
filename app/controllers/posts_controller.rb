@@ -38,14 +38,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = Post.find(params[:id])   
+  def show 
+    @post = Post.find(params[:id])  
+    # count views
+    @post.count_views     
+
     @reply = @post.replies.new
     #@replies = @post.replies.order(created_at: :asc)
     @replies = @post.replies.order(created_at: :asc).page(params[:page]).per(20)
-
-    # count views
-    @post.count_views
   end 
 
   def edit

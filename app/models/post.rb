@@ -10,12 +10,13 @@ class Post < ApplicationRecord
 
   has_many :replies, dependent: :destroy
 
-  def is_favorited?(user)
-    self.favorited_users.include?(user)
-  end
-
   def count_views
     self.viewed_count += 1
     self.save
   end
+
+  def is_favorited?(user)
+    self.favorited_users.include?(user)
+  end
+
 end
