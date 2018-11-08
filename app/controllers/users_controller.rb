@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find(params[:id])
-    @friends = current_user.all_friends
-    @unconfirm_friends = current_user.unconfirm_friends
-    @request_friends = current_user.request_friends
+    @friends = @user.all_friends
+    @unconfirm_friends = @user.unconfirm_friends
+    @request_friends = @user.request_friends
   end
 
   private

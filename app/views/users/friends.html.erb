@@ -30,7 +30,7 @@
       <div class="col-xs-8 col-xs-offset-2">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <%= current_user.all_friends.count %>
+            <%= @user.all_friends.count %>
             個好友
           </div>
           <div class="panel-center panel-body">
@@ -46,46 +46,48 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <%= current_user.unconfirm_friends.count %>
-            個等待接受好友
-          </div>
-          <div class="panel-center panel-body">
-            <% @unconfirm_friends.each do |friend| %>
-              <div class="friend-item text-center">
-                <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
-                <p class="text-primary inline">
-                  <%= link_to friend.name, posts_user_path(friend) %>
-                </p>
-                <%= render partial: "shared/friend", locals: { user: friend } %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <%= current_user.request_friends.count %>
-            個好友請求
-          </div>
-          <div class="panel-center panel-body">
-            <% @request_friends.each do |friend| %>
-              <div class="friend-item text-center">
-                <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
-                <p class="text-primary inline">
-                  <%= link_to friend.name, posts_user_path(friend) %>
-                </p>
-                <p><%= link_to "接受好友邀請", confirm_friendship_path(current_user, friend), class: "btn btn-primary", method: :post %></p>
-                <p><%= link_to "拒絕好友邀請", refuse_friendship_path(current_user, friend), class: "btn btn-danger", method: :delete %></p>
-              </div>
-            <% end %>
+
+      <% if @user == current_user %>
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= @user.unconfirm_friends.count %>
+              個等待接受好友
+            </div>
+            <div class="panel-center panel-body">
+              <% @unconfirm_friends.each do |friend| %>
+                <div class="friend-item text-center">
+                  <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
+                  <p class="text-primary inline">
+                    <%= link_to friend.name, posts_user_path(friend) %>
+                  </p>
+                  <%= render partial: "shared/friend", locals: { user: friend } %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= @user.request_friends.count %>
+              個好友請求
+            </div>
+            <div class="panel-center panel-body">
+              <% @request_friends.each do |friend| %>
+                <div class="friend-item text-center">
+                  <%= image_tag friend.avatar.url,width:"100" if friend.avatar? %>
+                  <p class="text-primary inline">
+                    <%= link_to friend.name, posts_user_path(friend) %>
+                  </p>
+                  <p><%= link_to "接受好友邀請", confirm_friendship_path(current_user, friend), class: "btn btn-primary", method: :post %></p>
+                  <p><%= link_to "拒絕好友邀請", refuse_friendship_path(current_user, friend), class: "btn btn-danger", method: :delete %></p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       
     </div>
   </div>
