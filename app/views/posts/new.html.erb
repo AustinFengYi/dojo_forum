@@ -4,6 +4,16 @@
     padding: 10px;
     margin-bottom: 15px;
   }
+  .form-check{
+      display: inline-block;
+      margin-right: 10px;
+  }
+  .col-form-label{
+    font-size: 15px;
+    font-weight: 600;
+    border: none !important;
+    margin-bottom: 8px;
+  }
 </style>
 
 <div class="container">
@@ -20,7 +30,7 @@
         </div>        
       <% end %>
 
-      <%= form_for @post do |f| %>
+      <%= simple_form_for @post do |f| %>
         <div class="form-group">
           <%= f.label :title, "Title" %>
           <%= f.text_field :title, class: "form-control" %>
@@ -38,8 +48,9 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :category, "Category" %>
-          <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+          <%#= f.label :category, "Category" %>
+          <%#= f.collection_select :category_id, Category.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+          <%= f.association :categories, as: :check_boxes, collection: @categories, input_html: { multiple: true } , wrapper: :vertical_collection_inline%>
         </div>
 
         <div class="form-group">

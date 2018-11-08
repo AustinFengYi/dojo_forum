@@ -26,12 +26,11 @@ namespace :dev do
       file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
 
       Post.create!(
-        title: FFaker::Lorem::sentence(10),
+        title: FFaker::Lorem::sentence(6),
         content: FFaker::Lorem::sentence(40),
         image: file,
         status:true,
         user_id: User.all.sample.id,
-        category_id: Category.all.sample.id
         )
     end
 
@@ -47,17 +46,23 @@ namespace :dev do
         file = File.open("#{Rails.root}/public/posimage/image#{rand(1..10)}.jpg")
 
         Post.create!(
-          title: FFaker::Lorem::sentence(10),
+          title: FFaker::Lorem::sentence(6),
           content: FFaker::Lorem::sentence(40),
           image: file,
           status:false,
           user_id: User.all.sample.id,
-          category_id: Category.all.sample.id
           )
       end
     end
     puts "have create fake draft posts"
     puts "now you have #{Post.where(status:false).count} draft posts"
+  end
+
+  task fake_post_category: :environment do
+    Post.all.each do |post|
+      post.categories << Category.all.sample(rand(1..3))
+    end
+    puts "All posts have at least one category."
   end
 
   task fake_reply: :environment do

@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def new 
     @post = Post.new
+    @categories = Category.all
   end
 
   def create
@@ -117,6 +118,6 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title,:content,:image,:authority,:user_id,:category_id)
+    params.require(:post).permit(:title,:content,:image,:authority,:user_id, category_ids:[])
   end
 end

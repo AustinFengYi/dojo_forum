@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'ffaker'
 gem 'kaminari'
 gem 'ransack'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
