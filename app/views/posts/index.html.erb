@@ -35,6 +35,16 @@
                   </tr>
                 <% end %>
               <% end %>
+
+            <% else%>
+              <% if post.authority == "All" %>
+                <tr>
+                  <td></td>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td></td>
+                  <td></td> 
+                </tr>
+              <% end %>
             <% end %>
           <% end %>
         </tbody>
